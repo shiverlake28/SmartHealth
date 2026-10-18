@@ -26,7 +26,7 @@ import {
   UserCheck,
   Zap,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Panel } from '../components/ui/Panel';
 import { MetricTile } from '../components/ui/MetricTile';
 import { api } from '../lib/api';
@@ -106,6 +106,7 @@ const sevChip: Record<string, string> = {
 
 export default function Dashboard() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const [kpis, setKpis] = useState<DistrictKpis | null>(null);
   const [centers, setCenters] = useState<Center[]>([]);
@@ -512,7 +513,11 @@ export default function Dashboard() {
               </thead>
               <tbody className='font-mono-data'>
                 {centerRows.map((r) => (
-                  <tr key={r.c.id} className='border-t border-white/6 hover:bg-white/[0.04] transition'>
+                  <tr
+                    key={r.c.id}
+                    onClick={() => navigate(`/centers/${r.c.id}`)}
+                    className='border-t border-white/6 hover:bg-white/[0.04] transition cursor-pointer'
+                  >
                     <td className='py-2.5 pr-2'>
                       <div className='text-[#e6ecff] font-semibold truncate max-w-[140px]'>{r.c.name}</div>
                       <div className='label-tech !text-[0.5rem]'>{r.c.type}</div>

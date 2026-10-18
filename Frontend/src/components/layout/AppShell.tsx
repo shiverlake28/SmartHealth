@@ -1,8 +1,13 @@
-﻿import { Header } from './Header';
+﻿import { useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { Header } from './Header';
 import { Sidebar } from './Sidebar';
-import { Outlet } from 'react-router-dom';
 
 export function AppShell() {
+  const [authed] = useState(() => !!localStorage.getItem('sh_auth'));
+
+  if (!authed) return <Navigate to='/login' replace />;
+
   return (
     <div className='min-h-screen hud-bg text-[#dbe4ff] flex'>
       <Sidebar />

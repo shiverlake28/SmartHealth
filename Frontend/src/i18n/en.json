@@ -74,5 +74,41 @@
     "redistributionTitle": "Smart Redistribution",
     "flagsTitle": "Underperforming Centres",
     "empty": "Nothing to show for current data."
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSub": "Login to Smart Health Command",
+    "registerTitle": "Create Account",
+    "registerSub": "Join the Smart Health network",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "role": "Role",
+    "login": "Login",
+    "register": "Register",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "invalid": "Enter a valid email and a password of at least 4 characters."
+  },
+  "home": {
+    "splashInit": "Initializing AI Platform",
+    "tagline": "AI-Driven Health Center",
+    "subtitle": "Real-time PHC/CHC management with stock monitoring, alerts, forecasts & smart redistribution",
+    "getStarted": "Get Started",
+    "login": "Login",
+    "register": "Register",
+    "f1": "Early stock-out prediction",
+    "f2": "7/30-day demand forecasts",
+    "f3": "Smart resource redistribution"
+  },
+  "centers": {
+    "title": "Health Centres",
+    "sub": "District facilities with live operational KPIs — open a centre for full drill-down.",
+    "view": "OPEN",
+    "beds": "Beds Free",
+    "footfall": "Footfall",
+    "attendance": "Attendance",
+    "tests": "Tests",
+    "empty": "No centres found."
   }
 }
