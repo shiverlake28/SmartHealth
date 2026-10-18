@@ -1,4 +1,4 @@
-﻿@import 'tailwindcss';
+@import 'tailwindcss';
 
 :root {
   color-scheme: dark;
@@ -137,6 +137,12 @@ body {
 /* ---------- Text treatments ---------- */
 .grad-cyan {
   background: linear-gradient(92deg, #67e8f9 0%, #a78bfa 55%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.grad-violet {
+  background: linear-gradient(92deg, #c4b5fd, #a78bfa 55%, #8b5cf6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -93,14 +93,16 @@ export default function Analytics() {
       api.get<ForecastRow[]>('/api/ai/forecast?days=30'),
       api.get<RedistributionRow[]>('/api/ai/redistribution'),
       api.get<FlagRow[]>('/api/ai/flags'),
-    ]).then(([w, a, b, r, f]) => {
-      setWarnings(w);
-      setF7(a);
-      setF30(b);
-      setRedistribution(r);
-      setFlags(f);
-      setLastSync(new Date());
-    });
+    ])
+      .then(([w, a, b, r, f]) => {
+        setWarnings(w);
+        setF7(a);
+        setF30(b);
+        setRedistribution(r);
+        setFlags(f);
+        setLastSync(new Date());
+      })
+      .catch(() => {});
   }, []);
 
   const { enabled: autoOn, setEnabled: setAutoOn } = useAutoRefresh(refresh, 30000);

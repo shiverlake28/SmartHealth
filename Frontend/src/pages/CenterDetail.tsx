@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, BedDouble, FlaskConical, Package, UserCheck, Users } from 'lucide-react';
@@ -53,22 +53,39 @@ export default function CenterDetail() {
   const [ov, setOv] = useState<Overview | null>(null);
   const [inv, setInv] = useState<InvRow[]>([]);
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const hasLoaded = useRef(false);
 
   const refresh = useCallback(() => {
     if (!id) return;
     Promise.all([
       api.get<Overview>(`/api/centers/${id}/overview`),
       api.get<InvRow[]>(`/api/inventory?centerId=${id}`),
-    ]).then(([o, i]) => {
-      setOv(o);
-      setInv(i);
-    }, () => setNotFound(true));
+    ])
+      .then(([o, i]) => {
+        hasLoaded.current = true;
+        setOv(o);
+        setInv(i);
+        setNotFound(false);
+      })
+      .catch(() => {
+        if (!hasLoaded.current) setNotFound(true);
+      })
+      .finally(() => setLoading(false));
   }, [id]);
 
   const { enabled: autoOn } = useAutoRefresh(refresh, 30000);
   useEffect(() => { refresh(); }, [refresh]);
 
-  if (notFound || !ov) {
+  if (id && loading) {
+    return (
+      <div className='panel p-10 text-center rise'>
+        <p className='text-dim'>Loading…</p>
+      </div>
+    );
+  }
+
+  if (!id || notFound || !ov) {
     return (
       <div className='panel p-10 text-center rise'>
         <p className='text-dim'>{t('ai.empty')}</p>

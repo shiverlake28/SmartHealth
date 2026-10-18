@@ -5,7 +5,7 @@ export type MetricTone = 'cyan' | 'violet' | 'green' | 'amber' | 'rose' | 'blue'
 
 const valueGrad: Record<MetricTone, string> = {
   cyan: 'grad-cyan',
-  violet: 'grad-cyan',
+  violet: 'grad-violet',
   green: 'grad-green',
   amber: 'grad-amber',
   rose: 'grad-rose',

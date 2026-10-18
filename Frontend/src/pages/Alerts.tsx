@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bell, BellOff, Check, CheckCheck, Filter, Siren } from 'lucide-react';
 import { Panel } from '../components/ui/Panel';
@@ -51,11 +51,13 @@ export default function Alerts() {
   const [acking, setAcking] = useState<string | null>(null);
 
   const refresh = useCallback(() => {
-    Promise.all([api.get<AlertRow[]>('/api/alerts?status=all'), api.get<Center[]>('/api/centers')]).then(([a, c]) => {
-      setAlerts(a);
-      setCenters(c);
-      setLastSync(new Date());
-    });
+    Promise.all([api.get<AlertRow[]>('/api/alerts?status=all'), api.get<Center[]>('/api/centers')])
+      .then(([a, c]) => {
+        setAlerts(a);
+        setCenters(c);
+        setLastSync(new Date());
+      })
+      .catch(() => {});
   }, []);
 
   const { enabled: autoOn, setEnabled: setAutoOn } = useAutoRefresh(refresh, 30000);
@@ -89,6 +91,8 @@ export default function Alerts() {
     try {
       await api.post(`/api/alerts/${id}/ack`, {});
       await refresh();
+    } catch {
+      // ack request failed — leave alert as-is
     } finally {
       setAcking(null);
     }

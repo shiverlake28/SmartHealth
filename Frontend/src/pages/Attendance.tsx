@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { CalendarCheck, CheckCircle2, Timer, UserCheck, UserX } from 'lucide-react';
@@ -60,12 +60,14 @@ export default function Attendance() {
       api.get<AttRow[]>('/api/attendance'),
       api.get<Summary>('/api/attendance/summary'),
       api.get<Center[]>('/api/centers'),
-    ]).then(([r, s, c]) => {
-      setRows(r);
-      setSummary(s);
-      setCenters(c);
-      setLastSync(new Date());
-    });
+    ])
+      .then(([r, s, c]) => {
+        setRows(r);
+        setSummary(s);
+        setCenters(c);
+        setLastSync(new Date());
+      })
+      .catch(() => {});
   }, []);
 
   const { enabled: autoOn, setEnabled: setAutoOn } = useAutoRefresh(refresh, 30000);

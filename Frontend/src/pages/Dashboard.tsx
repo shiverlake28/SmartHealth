@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Area,
@@ -170,20 +170,25 @@ export default function Dashboard() {
       .map(([date, count]) => ({ date: date.slice(5), count }));
   }, [footfall]);
 
+  const todayStr = useMemo(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }, []);
+
   /* ---------- chart 2: hourly footfall ---------- */
   const hourlySeries = useMemo(() => {
     const byHour = new Map<number, number>();
     for (const row of footfall) {
-      if (row.date === '2026-10-18') byHour.set(row.hour, (byHour.get(row.hour) ?? 0) + row.count);
+      if (row.date === todayStr) byHour.set(row.hour, (byHour.get(row.hour) ?? 0) + row.count);
     }
     return [...byHour.entries()]
       .sort((a, b) => a[0] - b[0])
       .map(([hour, count]) => ({ hour: `${hour}:00`, count }));
-  }, [footfall]);
+  }, [footfall, todayStr]);
 
   const todayFootfall = useMemo(
-    () => footfall.filter((f) => f.date === '2026-10-18').reduce((a, f) => a + f.count, 0),
-    [footfall],
+    () => footfall.filter((f) => f.date === todayStr).reduce((a, f) => a + f.count, 0),
+    [footfall, todayStr],
   );
 
   /* ---------- chart 3: beds by centre ---------- */

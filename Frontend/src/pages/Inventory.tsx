@@ -182,7 +182,7 @@ export default function Inventory() {
                 <tr key={`${r.centerId}-${r.medicineId}-${i}`} className='border-t border-white/6 hover:bg-white/[0.04] transition'>
                   <td className='py-2.5 pr-3'>
                     <div className='text-[#e6ecff] font-semibold truncate max-w-[130px]'>{r.centerName}</div>
-                    <div className='label-tech !text-[0.55rem]'>{r.centerType} � {r.centerId.toUpperCase()}</div>
+                    <div className='label-tech !text-[0.55rem]'>{r.centerType} · {r.centerId.toUpperCase()}</div>
                   </td>
                   <td className='py-2.5 pr-3'>
                     <div className='text-[#dbe4ff]'>{r.medicineName}</div>
@@ -198,7 +198,7 @@ export default function Inventory() {
                   <td className='py-2.5 pr-3 w-[150px]'>
                     <div className='flex items-center gap-2'>
                       <span className={cn('font-bold w-10', r.daysOfStock <= 2 ? 'text-rose-300' : r.daysOfStock <= 5 ? 'text-amber-300' : 'text-emerald-300')}>
-                        {r.daysOfStock === 999 ? '8' : `${r.daysOfStock}d`}
+                        {r.daysOfStock === 999 ? '∞' : `${r.daysOfStock}d`}
                       </span>
                       <div className={cn('meter flex-1', statusMeter[r.status])}>
                         <span style={{ width: `${Math.min(100, (r.daysOfStock / 14) * 100)}%` }} />
@@ -213,7 +213,7 @@ export default function Inventory() {
                         {r.expiryDates[0].slice(5)}
                       </span>
                     ) : (
-                      <span className='text-dim'>�</span>
+                      <span className='text-dim'>—</span>
                     )}
                   </td>
                   <td className='py-2.5'>
