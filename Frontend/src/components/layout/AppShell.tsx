@@ -9,7 +9,7 @@ export function AppShell() {
   if (!authed) return <Navigate to='/login' replace />;
 
   return (
-    <div className='min-h-screen hud-bg text-[#dbe4ff] flex'>
+    <div className='min-h-screen hud-bg text-[color:var(--text)] flex'>
       <Sidebar />
       <div className='flex-1 flex flex-col min-w-0'>
         <Header />

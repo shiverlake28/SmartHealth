@@ -52,14 +52,17 @@ export default function Inventory() {
   const [q, setQ] = useState('');
   const [centerFilter, setCenterFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState<(typeof statusFilterOptions)[number]>('all');
-  const [lastSync, setLastSync] = useState(() => new Date());
+  const [err, setErr] = useState<string | null>(null);
 
   const refresh = useCallback(() => {
-    Promise.all([api.get<InvRow[]>('/api/inventory'), api.get<Center[]>('/api/centers')]).then(([inv, cs]) => {
-      setRows(inv);
-      setCenters(cs);
-      setLastSync(new Date());
-    });
+    Promise.all([api.get<InvRow[]>('/api/inventory'), api.get<Center[]>('/api/centers')])
+      .then(([inv, cs]) => {
+        setRows(inv);
+        setCenters(cs);
+        setLastSync(new Date());
+        setErr(null);
+      })
+      .catch((e) => setErr(e instanceof Error ? e.message : 'Failed to load'));
   }, []);
 
   const { enabled: autoOn, setEnabled: setAutoOn } = useAutoRefresh(refresh, 30000);

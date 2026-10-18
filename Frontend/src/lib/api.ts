@@ -1,4 +1,4 @@
-﻿const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001';
+﻿const API_BASE = import.meta.env.VITE_API_BASE || 'https://smarthealth-1-w49t.onrender.com';
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(API_BASE + path, {

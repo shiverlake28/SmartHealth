@@ -10,6 +10,7 @@
   --sidebar-bg: rgba(7, 11, 23, 0.9);
   --surface: rgba(255, 255, 255, 0.03);
   --muted: #9fb0dd;
+  --text: #dbe4ff;
   --cyan: #22d3ee;
   --violet: #a78bfa;
   --green: #34d399;
@@ -28,6 +29,7 @@
   --sidebar-bg: rgba(247, 249, 255, 0.92);
   --surface: rgba(20, 50, 120, 0.05);
   --muted: #5c6b93;
+  --text: #16203c;
 }
 :root[data-theme='light'] body { color: #16203c; }
 :root[data-theme='light'] .hud-bg {
