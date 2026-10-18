@@ -1,1 +1,4 @@
-@import "tailwind";
+﻿@import 'tailwindcss';
+@layer base { html, body { font-size: clamp(14px, 0.8vw + 0.4rem, 18px); } }
+:root { color-scheme: dark; }
+
