@@ -1,1 +1,35 @@
-﻿{"common":{"dashboard":"Dashboard","inventory":"Inventory","attendance":"Attendance","alerts":"Alerts","centers":"Centers","ai":"AI","language":"Language","theme":"Theme","autoRefresh":"Auto Refresh"},"dashboard":{"kpiCenters":"Centers","kpiStockRisk":"Stock-out Risk","kpiBedOccupancy":"Bed Occupancy %","kpiAttendance":"Doctor Attendance %","kpiTestAvail":"Test Availability %","alerts":"Alerts","aiFlags":"AI Flags"}}
+﻿{
+  "common": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "attendance": "Attendance",
+    "alerts": "Alerts",
+    "centers": "Centers",
+    "ai": "AI Engine",
+    "language": "Language",
+    "theme": "Theme",
+    "autoRefresh": "Auto Refresh"
+  },
+  "dashboard": {
+    "heroTitle": "District Health Command",
+    "heroSub": "Real-time AI supervision of stock, footfall, beds, attendance & test labs across every PHC / CHC in the district.",
+    "kpiCenters": "Active Centres",
+    "kpiStockRisk": "Stock-out Risk",
+    "kpiBedOccupancy": "Bed Occupancy",
+    "kpiAttendance": "Doctor Attendance",
+    "kpiTestAvail": "Test Availability",
+    "kpiFlags": "AI Flags",
+    "footfallTrend": "Patient Footfall — 7 Day Trend",
+    "hourlyFootfall": "Hourly Footfall Distribution",
+    "bedsTitle": "Bed Availability by Centre",
+    "attendanceTitle": "Attendance Compliance %",
+    "testsTitle": "Test Lab Uptime",
+    "stockWarnings": "Early Stock-out Warnings",
+    "forecastTitle": "AI Demand Forecast",
+    "redistributionTitle": "Resource Redistribution",
+    "aiFlags": "Underperforming Centres",
+    "alerts": "Live Alert Stream",
+    "centerStatus": "Facility Status Matrix",
+    "lastSync": "LAST SYNC"
+  }
+}

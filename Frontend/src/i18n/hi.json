@@ -1,1 +1,35 @@
-﻿{"common":{"dashboard":"डैशबोर्ड","inventory":"भंडार","attendance":"उपस्थिति","alerts":"अलर्ट","centers":"स्वास्थ्य केंद्र","ai":"एआई","language":"भाषा","theme":"थीम","autoRefresh":"स्वचालित ताज़ा"},"dashboard":{"kpiCenters":"केंद्र","kpiStockRisk":"स्टॉक आउट जोखिम","kpiBedOccupancy":"बिस्तर उपयोग %","kpiAttendance":"डॉक्टर उपस्थिति %","kpiTestAvail":"परीक्षण उपलब्धता %","alerts":"अलर्ट","aiFlags":"एआई फ्लैग"}}
+﻿{
+  "common": {
+    "dashboard": "डैशबोर्ड",
+    "inventory": "भंडार",
+    "attendance": "उपस्थिति",
+    "alerts": "अलर्ट",
+    "centers": "स्वास्थ्य केंद्र",
+    "ai": "एआई इंजन",
+    "language": "भाषा",
+    "theme": "थीम",
+    "autoRefresh": "स्वचालित ताज़ा"
+  },
+  "dashboard": {
+    "heroTitle": "ज़िला स्वास्थ्य कमांड",
+    "heroSub": "ज़िले के हर पीएचसी / सीएचसी में स्टॉक, मरीज़ आवागमन, बिस्तर, उपस्थिति और परीक्षण प्रयोगशालाओं की रीयल-टाइम एआई निगरानी।",
+    "kpiCenters": "सक्रिय केंद्र",
+    "kpiStockRisk": "स्टॉक-आउट जोखिम",
+    "kpiBedOccupancy": "बिस्तर उपयोग",
+    "kpiAttendance": "डॉक्टर उपस्थिति",
+    "kpiTestAvail": "परीक्षण उपलब्धता",
+    "kpiFlags": "एआई फ्लैग",
+    "footfallTrend": "मरीज़ आवागमन — 7 दिन का रुझान",
+    "hourlyFootfall": "घंटेवार मरीज़ आवागमन",
+    "bedsTitle": "केंद्रवार बिस्तर उपलब्धता",
+    "attendanceTitle": "उपस्थिति अनुपालन %",
+    "testsTitle": "परीक्षण प्रयोगशाला अपटाइम",
+    "stockWarnings": "प्रारंभिक स्टॉक-आउट चेतावनी",
+    "forecastTitle": "एआई मांग पूर्वानुमान",
+    "redistributionTitle": "संसाधन पुनर्वितरण",
+    "aiFlags": "कमज़ोर केंद्र",
+    "alerts": "लाइव अलर्ट स्ट्रीम",
+    "centerStatus": "सुविधा स्थिति मैट्रिक्स",
+    "lastSync": "अंतिम सिंक"
+  }
+}
