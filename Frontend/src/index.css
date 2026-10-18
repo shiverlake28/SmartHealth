@@ -21,9 +21,9 @@
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --bg-0: #eef2fb;
-  --bg-1: #f6f8ff;
-  --bg-2: #ffffff;
+  --bg-0: #F5F5DC;
+  --bg-1: #F5F5DC;
+  --bg-2: #f5f5dc;
   --line: rgba(40, 80, 160, 0.18);
   --header-bg: rgba(255, 255, 255, 0.8);
   --sidebar-bg: rgba(247, 249, 255, 0.92);
