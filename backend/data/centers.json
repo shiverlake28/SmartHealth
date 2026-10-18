@@ -1,0 +1,7 @@
+﻿[
+  { "id": "c1", "name": "PHC Rajnagar", "type": "PHC", "district": "DistrictX", "status": "active" },
+  { "id": "c2", "name": "PHC Shanti Nagar", "type": "PHC", "district": "DistrictX", "status": "active" },
+  { "id": "c3", "name": "CHC Central", "type": "CHC", "district": "DistrictX", "status": "active" },
+  { "id": "c4", "name": "PHC Green Valley", "type": "PHC", "district": "DistrictX", "status": "active" },
+  { "id": "c5", "name": "CHC East", "type": "CHC", "district": "DistrictX", "status": "active" }
+]

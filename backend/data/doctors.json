@@ -1,0 +1,6 @@
+﻿[
+  { "centerId": "c1", "date": "2026-10-18", "shift": "morning", "present": ["Dr.A"], "absent": ["Dr.B"], "total": 2 },
+  { "centerId": "c2", "date": "2026-10-18", "shift": "morning", "present": ["Dr.X"], "absent": [], "total": 1 },
+  { "centerId": "c3", "date": "2026-10-18", "shift": "day", "present": ["Dr.1","Dr.2","Dr.3"], "absent": ["Dr.4"], "total": 4 },
+  { "centerId": "c5", "date": "2026-10-18", "shift": "day", "present": ["D1","D2"], "absent": ["D3"], "total": 3 }
+]

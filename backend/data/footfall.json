@@ -1,0 +1,7 @@
+﻿[
+  { "centerId": "c1", "date": "2026-10-18", "hour": 8, "count": 15 },
+  { "centerId": "c1", "date": "2026-10-18", "hour": 9, "count": 20 },
+  { "centerId": "c1", "date": "2026-10-17", "hour": 9, "count": 18 },
+  { "centerId": "c2", "date": "2026-10-18", "hour": 10, "count": 12 },
+  { "centerId": "c3", "date": "2026-10-18", "hour": 11, "count": 30 }
+]

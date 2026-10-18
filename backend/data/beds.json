@@ -1,0 +1,7 @@
+﻿[
+  { "centerId": "c1", "total": 20, "occupied": 12, "available": 8, "icuTotal": 2, "icuOccupied": 1 },
+  { "centerId": "c2", "total": 15, "occupied": 10, "available": 5, "icuTotal": 1, "icuOccupied": 0 },
+  { "centerId": "c3", "total": 40, "occupied": 28, "available": 12, "icuTotal": 5, "icuOccupied": 3 },
+  { "centerId": "c4", "total": 12, "occupied": 9, "available": 3, "icuTotal": 0, "icuOccupied": 0 },
+  { "centerId": "c5", "total": 30, "occupied": 18, "available": 12, "icuTotal": 3, "icuOccupied": 1 }
+]

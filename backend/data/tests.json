@@ -1,0 +1,5 @@
+﻿[
+  { "centerId": "c1", "testType": "Malaria", "available": true, "capacityPerDay": 20, "doneToday": 8, "pending": 2 },
+  { "centerId": "c3", "testType": "Blood", "available": true, "capacityPerDay": 50, "doneToday": 25, "pending": 5 },
+  { "centerId": "c4", "testType": "X-Ray", "available": false, "capacityPerDay": 10, "doneToday": 0, "pending": 0 }
+]

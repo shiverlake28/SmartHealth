@@ -1,0 +1,5 @@
+﻿[
+  { "id": "a1", "centerId": "c1", "type": "stock_out_risk", "severity": "high", "createdAt": "2026-10-18T08:00:00Z", "status": "open", "message": "Paracetamol low stock" },
+  { "id": "a2", "centerId": "c3", "type": "stock_out_risk", "severity": "critical", "createdAt": "2026-10-18T09:15:00Z", "status": "open", "message": "Insulin critical" },
+  { "id": "a3", "centerId": "c4", "type": "test_unavailable", "severity": "med", "createdAt": "2026-10-18T07:30:00Z", "status": "open", "message": "X-Ray unavailable" }
+]

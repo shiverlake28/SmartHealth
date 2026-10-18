@@ -1,0 +1,7 @@
+﻿[
+  { "id": "m1", "name": "Paracetamol", "unit": "tablet", "criticalMin": 100, "reorderPoint": 200, "leadTimeDays": 3 },
+  { "id": "m2", "name": "Amoxicillin", "unit": "capsule", "criticalMin": 80, "reorderPoint": 150, "leadTimeDays": 3 },
+  { "id": "m3", "name": "ORS", "unit": "sachet", "criticalMin": 200, "reorderPoint": 400, "leadTimeDays": 2 },
+  { "id": "m4", "name": "Insulin", "unit": "vial", "criticalMin": 30, "reorderPoint": 60, "leadTimeDays": 5 },
+  { "id": "m5", "name": "Metformin", "unit": "tablet", "criticalMin": 120, "reorderPoint": 250, "leadTimeDays": 3 }
+]
