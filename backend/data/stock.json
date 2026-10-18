@@ -1,8 +1,16 @@
 ﻿[
   { "centerId": "c1", "medicineId": "m1", "qtyOnHand": 150, "qtyIssuedToday": 30, "qtyReceivedToday": 0, "avgDailyConsumption14d": 40, "expiryDates": ["2026-12-31"] },
-  { "centerId": "c1", "medicineId": "m2", "qtyOnHand": 120, "qtyIssuedToday": 20, "qtyReceivedToday": 0, "avgDailyConsumption14d": 25, "expiryDates": ["2027-03-01"] },
-  { "centerId": "c2", "medicineId": "m1", "qtyOnHand": 300, "qtyIssuedToday": 25, "qtyReceivedToday": 0, "avgDailyConsumption14d": 35, "expiryDates": ["2027-01-15"] },
+  { "centerId": "c1", "medicineId": "m2", "qtyOnHand": 60, "qtyIssuedToday": 20, "qtyReceivedToday": 0, "avgDailyConsumption14d": 25, "expiryDates": ["2027-03-01"] },
+  { "centerId": "c1", "medicineId": "m4", "qtyOnHand": 12, "qtyIssuedToday": 5, "qtyReceivedToday": 0, "avgDailyConsumption14d": 6, "expiryDates": ["2026-11-20"] },
+  { "centerId": "c2", "medicineId": "m1", "qtyOnHand": 900, "qtyIssuedToday": 25, "qtyReceivedToday": 400, "avgDailyConsumption14d": 35, "expiryDates": ["2027-01-15"] },
+  { "centerId": "c2", "medicineId": "m3", "qtyOnHand": 950, "qtyIssuedToday": 40, "qtyReceivedToday": 0, "avgDailyConsumption14d": 60, "expiryDates": ["2027-05-10"] },
+  { "centerId": "c2", "medicineId": "m5", "qtyOnHand": 700, "qtyIssuedToday": 30, "qtyReceivedToday": 0, "avgDailyConsumption14d": 40, "expiryDates": ["2026-12-01"] },
   { "centerId": "c3", "medicineId": "m4", "qtyOnHand": 20, "qtyIssuedToday": 5, "qtyReceivedToday": 0, "avgDailyConsumption14d": 6, "expiryDates": ["2026-11-20"] },
-  { "centerId": "c4", "medicineId": "m3", "qtyOnHand": 500, "qtyIssuedToday": 40, "qtyReceivedToday": 0, "avgDailyConsumption14d": 60, "expiryDates": ["2027-05-10"] },
-  { "centerId": "c5", "medicineId": "m5", "qtyOnHand": 80, "qtyIssuedToday": 30, "qtyReceivedToday": 0, "avgDailyConsumption14d": 40, "expiryDates": ["2026-12-01"] }
+  { "centerId": "c3", "medicineId": "m1", "qtyOnHand": 80, "qtyIssuedToday": 45, "qtyReceivedToday": 0, "avgDailyConsumption14d": 45, "expiryDates": ["2026-12-31"] },
+  { "centerId": "c3", "medicineId": "m2", "qtyOnHand": 700, "qtyIssuedToday": 20, "qtyReceivedToday": 0, "avgDailyConsumption14d": 25, "expiryDates": ["2027-03-01"] },
+  { "centerId": "c4", "medicineId": "m3", "qtyOnHand": 900, "qtyIssuedToday": 40, "qtyReceivedToday": 0, "avgDailyConsumption14d": 60, "expiryDates": ["2027-05-10"] },
+  { "centerId": "c4", "medicineId": "m5", "qtyOnHand": 40, "qtyIssuedToday": 35, "qtyReceivedToday": 0, "avgDailyConsumption14d": 40, "expiryDates": ["2026-12-01"] },
+  { "centerId": "c5", "medicineId": "m5", "qtyOnHand": 80, "qtyIssuedToday": 30, "qtyReceivedToday": 0, "avgDailyConsumption14d": 40, "expiryDates": ["2026-12-01"] },
+  { "centerId": "c5", "medicineId": "m1", "qtyOnHand": 600, "qtyIssuedToday": 25, "qtyReceivedToday": 0, "avgDailyConsumption14d": 35, "expiryDates": ["2027-01-15"] },
+  { "centerId": "c5", "medicineId": "m4", "qtyOnHand": 150, "qtyIssuedToday": 4, "qtyReceivedToday": 0, "avgDailyConsumption14d": 5, "expiryDates": ["2026-11-20"] }
 ]
