@@ -52,10 +52,21 @@ export default function Inventory() {
   const [q, setQ] = useState('');
   const [centerFilter, setCenterFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState<(typeof statusFilterOptions)[number]>('all');
-  const [err, setErr] = useState<string | null>(null);
+  const [lastSync, setLastSync] = useState(() => new Date());
+  const [_err, setErr] = useState<string | null>(null);
 
+  const refresh = useCallback(() => {
+    Promise.all([api.get<InvRow[]>('/api/inventory'), api.get<Center[]>('/api/centers')])
+      .then(([inv, cs]) => {
+        setRows(inv);
+        setCenters(cs);
+        setLastSync(new Date());
+        setErr(null);
+      })
+      .catch((e) => setErr(e instanceof Error ? e.message : 'Failed to load'));
+  }, []);
 
-
+  const { enabled: autoOn, setEnabled: setAutoOn } = useAutoRefresh(refresh, 30000);
   useEffect(() => {
     refresh();
   }, [refresh]);
@@ -225,4 +236,5 @@ export default function Inventory() {
     </div>
   );
 }
+
 
