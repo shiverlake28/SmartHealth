@@ -53,7 +53,7 @@ export default function Inventory() {
   const [centerFilter, setCenterFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState<(typeof statusFilterOptions)[number]>('all');
   const [lastSync, setLastSync] = useState(() => new Date());
-  const [_err, setErr] = useState<string | null>(null);
+  const [, setErr] = useState<string | null>(null);
 
   const refresh = useCallback(() => {
     Promise.all([api.get<InvRow[]>('/api/inventory'), api.get<Center[]>('/api/centers')])
