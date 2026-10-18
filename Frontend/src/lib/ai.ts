@@ -1,4 +1,7 @@
 ﻿export type Warning = { centerId: string; medicineId: string; severity: 'low'|'med'|'high'|'critical'; daysOfStock: number; reason: string; suggestedAction: string; };
+export type Flag = { centerId: string; score: number; reasons: string[]; interventions: string[]; };
+export type Redistribution = { fromCenter: string; toCenter: string; medicineId: string; qty: number; feasibility: string; reason: string; };
+export type Forecast = { centerId: string; medicineId: string; days: number; qtyForecast: number; confidence: 'low'|'med'|'high'; rationale: string; };
 
 export function daysOfStock(qtyOnHand: number, avgDailyConsumption14d: number): number {
   if (!avgDailyConsumption14d || avgDailyConsumption14d <= 0) return Infinity;
@@ -13,11 +16,14 @@ export function getWarnings(stock: Array<{centerId:string,medicineId:string,qtyO
     if (!m || !c) continue;
     const d = daysOfStock(s.qtyOnHand, s.avgDailyConsumption14d);
     if (d <= m.reorderPoint || d <= m.leadTimeDays * 0.8) {
-      let sev: Warning['severity'] = 'med';
-      if (d <= 1) sev = 'critical'; else if (d <= 2) sev = 'high';
+      const sev: Warning['severity'] = d <= 1 ? 'critical' : d <= 2 ? 'high' : 'med';
       warnings.push({ centerId: s.centerId, medicineId: s.medicineId, severity: sev, daysOfStock: +d.toFixed(1), reason: 'Low days-of-stock vs reorder/lead', suggestedAction: 'Consider transfer or reorder' });
     }
   }
   return warnings;
 }
+
+export function getForecast(): Forecast[] { return []; }
+export function getRedistribution(): Redistribution[] { return []; }
+export function getFlags(): Flag[] { return []; }
 

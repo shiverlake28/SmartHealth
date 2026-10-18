@@ -3,18 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { KpiCard } from '../components/ui/KpiCard';
 import { api } from '../lib/api';
 import type { Alert, Center } from '../types/domain';
-import { getWarnings } from '../lib/ai';
 import { Building, AlertTriangle, BedDouble, UserCheck, FlaskConical } from 'lucide-react';
 
 export default function Dashboard() {
   const { t } = useTranslation();
   const [centers, setCenters] = useState<Center[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
-  const [flags, setFlags] = useState<any[]>([]);
+  const [flags, setFlags] = useState<Array<{centerId:string; medicineId:string; severity:string}>>([]);
   useEffect(() => {
     api.get<Center[]>('/api/centers').then(setCenters);
     api.get<Alert[]>('/api/alerts?status=open').then(setAlerts);
-    api.get<any[]>('/api/ai/warnings').then(setFlags);
+    api.get<Array<{centerId:string; medicineId:string; severity:string}>>('/api/ai/warnings').then(setFlags);
   }, []);
   return (
     <div className='space-y-6'>
