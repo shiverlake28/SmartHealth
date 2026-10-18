@@ -6,13 +6,18 @@ import Attendance from './pages/Attendance';
 import Alerts from './pages/Alerts';
 import Analytics from './pages/Analytics';
 import CenterDetail from './pages/CenterDetail';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import './i18n';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigate to='/dashboard' replace/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route element={<AppShell/>}>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/inventory' element={<Inventory/>}/>
@@ -21,6 +26,7 @@ function App() {
           <Route path='/analytics' element={<Analytics/>}/>
           <Route path='/centers/:id' element={<CenterDetail/>}/>
         </Route>
+        <Route path='*' element={<Navigate to='/' replace/>}/>
       </Routes>
     </BrowserRouter>
   );
