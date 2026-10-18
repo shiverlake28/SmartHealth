@@ -192,7 +192,7 @@ export default function Analytics() {
           </p>
           <div className='grid gap-3 md:grid-cols-2'>
             {warnings.map((w, i) => (
-              <div key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/8 bg-white/[0.03] p-3.5 hover:border-rose-400/40 transition'>
+              <div key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3.5 hover:border-rose-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-2'>
                   <span className='font-semibold text-sm text-[#e6ecff]'>{w.medicineName}</span>
                   <span className={cn('chip', sevChip[w.severity])}>{w.severity}</span>
@@ -200,7 +200,7 @@ export default function Analytics() {
                 <div className='flex flex-wrap gap-2 text-xs font-mono-data mb-2.5'>
                   <span className='px-2 py-0.5 rounded bg-cyan-400/10 text-cyan-300 border border-cyan-400/30'>{w.centerId.toUpperCase()}</span>
                   <span className='px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/30'>{w.daysOfStock}d cover</span>
-                  <span className='px-2 py-0.5 rounded bg-white/5 text-[#9fb0dd] border border-white/10'>{w.qtyOnHand} on hand</span>
+                  <span className='px-2 py-0.5 rounded bg-white/[0.02] text-[#9fb0dd] border border-white/[0.05]'>{w.qtyOnHand} on hand</span>
                 </div>
                 <div className='meter crit mb-2.5'>
                   <span style={{ width: `${Math.min(100, (w.daysOfStock / 5) * 100)}%` }} />
@@ -245,11 +245,11 @@ export default function Analytics() {
           </p>
 
           <div className='grid gap-3 sm:grid-cols-3 mb-4'>
-            <div className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
               <div className='label-tech'>confidence</div>
               <div className='font-display text-2xl font-bold grad-cyan'>{confidenceMix.avg}%</div>
             </div>
-            <div className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
               <div className='label-tech'>high / med / low</div>
               <div className='font-mono-data text-sm mt-1'>
                 <span className='text-emerald-300'>{confidenceMix.high}</span>
@@ -259,7 +259,7 @@ export default function Analytics() {
                 <span className='text-rose-300'>{confidenceMix.low}</span>
               </div>
             </div>
-            <div className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
               <div className='label-tech'>total demand {horizon}d</div>
               <div className='font-display text-2xl font-bold grad-green'>
                 {forecastTotals.reduce((a, [, v]) => a + v, 0).toLocaleString()}
@@ -287,7 +287,7 @@ export default function Analytics() {
           {/* detail rows */}
           <ul className='space-y-2 max-h-64 overflow-y-auto pr-1'>
             {forecast.map((f, i) => (
-              <li key={`${f.centerId}-${f.medicineId}-${i}`} className='flex flex-wrap items-center gap-2 rounded-lg border border-white/6 bg-white/[0.02] px-3 py-2 text-xs'>
+              <li key={`${f.centerId}-${f.medicineId}-${i}`} className='flex flex-wrap items-center gap-2 rounded-lg border border-white/[0.03] bg-white/[0.01] px-3 py-2 text-xs'>
                 <span className='text-[#e6ecff] font-semibold'>{f.medicineName}</span>
                 <span className='font-mono-data text-cyan-300'>{f.centerId.toUpperCase()}</span>
                 <span className='font-mono-data text-amber-300 font-bold'>→ {f.qtyForecast}</span>
@@ -335,7 +335,7 @@ export default function Analytics() {
                   </span>
                 </div>
                 <p className='text-xs text-dim leading-relaxed'>{r.reason}</p>
-                <div className='mt-3 pt-2.5 border-t border-white/8 flex items-center justify-between'>
+                <div className='mt-3 pt-2.5 border-t border-white/[0.04] flex items-center justify-between'>
                   <span className='label-tech'>district</span>
                   <span className='font-mono-data text-xs text-[#dbe4ff]'>{r.district}</span>
                 </div>
@@ -364,7 +364,7 @@ export default function Analytics() {
           </p>
           <div className='grid gap-3 md:grid-cols-2'>
             {flags.map((f) => (
-              <div key={f.centerId} className='rounded-lg border border-white/8 bg-white/[0.03] p-4 hover:border-rose-400/40 transition'>
+              <div key={f.centerId} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 hover:border-rose-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-2'>
                   <div>
                     <div className='font-semibold text-sm text-[#e6ecff]'>{f.centerName}</div>
@@ -392,7 +392,7 @@ export default function Analytics() {
                     ))}
                   </ul>
                 </div>
-                <div className='pt-2.5 border-t border-white/8'>
+                <div className='pt-2.5 border-t border-white/[0.04]'>
                   <div className='label-tech mb-1'>recommended intervention</div>
                   {f.interventions.map((v, i) => (
                     <div key={i} className='text-xs text-emerald-300 flex gap-1.5'>

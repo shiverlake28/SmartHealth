@@ -132,13 +132,13 @@ export default function Inventory() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t('inventory.searchPlaceholder')}
-            className='w-full pl-8 pr-3 py-2 rounded-lg bg-white/[0.04] border border-[var(--line)] text-sm text-[#dbe4ff] placeholder:text-[#6f83b8] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+            className='w-full pl-8 pr-3 py-2 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm text-[#dbe4ff] placeholder:text-[#6f83b8] focus:outline-none focus:border-cyan-400/60 font-mono-data'
           />
         </div>
         <select
           value={centerFilter}
           onChange={(e) => setCenterFilter(e.target.value)}
-          className='px-3 py-2 rounded-lg bg-white/[0.04] border border-[var(--line)] text-sm text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+          className='px-3 py-2 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
         >
           <option value='all'>{t('inventory.allCentres')}</option>
           {centers.map((c) => (
@@ -179,7 +179,7 @@ export default function Inventory() {
             </thead>
             <tbody className='font-mono-data'>
               {filtered.map((r, i) => (
-                <tr key={`${r.centerId}-${r.medicineId}-${i}`} className='border-t border-white/6 hover:bg-white/[0.04] transition'>
+                <tr key={`${r.centerId}-${r.medicineId}-${i}`} className='border-t border-white/[0.03] hover:bg-white/[0.02] transition'>
                   <td className='py-2.5 pr-3'>
                     <div className='text-[#e6ecff] font-semibold truncate max-w-[130px]'>{r.centerName}</div>
                     <div className='label-tech !text-[0.55rem]'>{r.centerType} · {r.centerId.toUpperCase()}</div>

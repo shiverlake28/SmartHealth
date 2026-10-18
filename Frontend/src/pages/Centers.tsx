@@ -27,7 +27,7 @@ export default function Centers() {
   useEffect(() => { refresh(); }, [refresh]);
 
   const metric = (label: string, value: number, icon: ReactNode, tone: string) => (
-    <div className='rounded-lg border border-[var(--line)] bg-white/[0.03] p-2 text-center'>
+    <div className='rounded-lg border border-[var(--line)] bg-white/[0.015] p-2 text-center'>
       <div className={cn('mx-auto mb-1', tone)}>{icon}</div>
       <div className='font-mono-data text-sm font-bold text-[#dbe4ff]'>{value}%</div>
       <div className='label-tech !text-[0.5rem] !tracking-[0.1em]'>{label}</div>

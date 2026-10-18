@@ -145,7 +145,7 @@ export default function CenterDetail() {
               </thead>
               <tbody className='font-mono-data'>
                 {inv.map((r, i) => (
-                  <tr key={i} className='border-t border-white/6 hover:bg-white/[0.04] transition'>
+                  <tr key={i} className='border-t border-white/[0.03] hover:bg-white/[0.02] transition'>
                     <td className='py-2.5 pr-3 text-[#e6ecff] font-semibold'>{r.medicineName}</td>
                     <td className='py-2.5 pr-3 text-right text-[#dbe4ff]'>{r.qtyOnHand} <span className='text-dim'>{r.unit}</span></td>
                     <td className='py-2.5 pr-3 text-right text-cyan-300'>{r.avgDailyConsumption14d}</td>
@@ -174,7 +174,7 @@ export default function CenterDetail() {
           <ul className='space-y-2.5 max-h-[360px] overflow-y-auto pr-1'>
             {ov.warnings.length === 0 && <li className='text-dim text-sm py-6 text-center'>All clear at this centre.</li>}
             {ov.warnings.map((w, i) => (
-              <li key={i} className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+              <li key={i} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
                 <div className='flex items-center justify-between gap-2 mb-1.5'>
                   <span className='font-semibold text-sm text-[#e6ecff] truncate'>{w.medicineName}</span>
                   <span className={cn('chip', sevChip[w.severity] ?? 'chip-med')}>{w.severity}</span>

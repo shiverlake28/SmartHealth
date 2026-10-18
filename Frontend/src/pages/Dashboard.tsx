@@ -327,7 +327,7 @@ export default function Dashboard() {
               { l: 'YESTERDAY', v: footfallSeries.at(-2)?.count ?? 0, c: 'text-blue-300' },
               { l: 'PEAK 7D', v: Math.max(...footfallSeries.map((x) => x.count), 0), c: 'text-violet-300' },
             ].map((x) => (
-              <div key={x.l} className='rounded-lg border border-white/8 bg-white/[0.03] px-3 py-2'>
+              <div key={x.l} className='rounded-lg border border-white/[0.04] bg-white/[0.015] px-3 py-2'>
                 <div className='label-tech'>{x.l}</div>
                 <div className={cn('font-mono-data text-lg font-bold', x.c)}>{x.v}</div>
               </div>
@@ -421,7 +421,7 @@ export default function Dashboard() {
           <ul className='space-y-2.5 max-h-80 overflow-y-auto pr-1'>
             {warnings.length === 0 && <li className='text-dim text-sm py-6 text-center'>All clear.</li>}
             {warnings.slice(0, 8).map((w, i) => (
-              <li key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+              <li key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
                 <div className='flex items-center justify-between gap-2 mb-1.5'>
                   <span className='font-semibold text-sm text-[#e6ecff] truncate'>{w.medicineName}</span>
                   <span className={cn('chip', sevChip[w.severity])}>{w.severity}</span>
@@ -473,7 +473,7 @@ export default function Dashboard() {
           <ul className='space-y-3 max-h-80 overflow-y-auto pr-1'>
             {flags.length === 0 && <li className='text-dim text-sm py-6 text-center'>No underperforming centres.</li>}
             {flags.map((f) => (
-              <li key={f.centerId} className='rounded-lg border border-white/8 bg-white/[0.03] p-3'>
+              <li key={f.centerId} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
                 <div className='flex items-center justify-between gap-2 mb-1'>
                   <span className='font-semibold text-sm truncate text-[#e6ecff]'>{f.centerName}</span>
                   <span className={cn('chip', sevChip[f.status])}>{f.status}</span>
@@ -521,7 +521,7 @@ export default function Dashboard() {
                   <tr
                     key={r.c.id}
                     onClick={() => navigate(`/centers/${r.c.id}`)}
-                    className='border-t border-white/6 hover:bg-white/[0.04] transition cursor-pointer'
+                    className='border-t border-white/[0.03] hover:bg-white/[0.02] transition cursor-pointer'
                   >
                     <td className='py-2.5 pr-2'>
                       <div className='text-[#e6ecff] font-semibold truncate max-w-[140px]'>{r.c.name}</div>

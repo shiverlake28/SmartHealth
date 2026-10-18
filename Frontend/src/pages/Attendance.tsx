@@ -113,7 +113,7 @@ export default function Attendance() {
             <select
               value={centerFilter}
               onChange={(e) => setCenterFilter(e.target.value)}
-              className='px-3 py-1.5 rounded-lg bg-white/[0.04] border border-[var(--line)] text-xs text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+              className='px-3 py-1.5 rounded-lg bg-white/[0.02] border border-[var(--line)] text-xs text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
             >
               <option value='all'>{t('inventory.allCentres')}</option>
               {centers.map((c) => (
@@ -199,7 +199,7 @@ export default function Attendance() {
         >
           <ul className='space-y-2.5 max-h-[340px] overflow-y-auto pr-1'>
             {filtered.map((r, i) => (
-              <li key={`${r.centerId}-${r.shift}-${i}`} className='rounded-lg border border-white/8 bg-white/[0.03] p-3 hover:border-violet-400/40 transition'>
+              <li key={`${r.centerId}-${r.shift}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3 hover:border-violet-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-1.5'>
                   <div className='min-w-0'>
                     <div className='text-sm font-semibold text-[#e6ecff] truncate'>{r.centerName}</div>

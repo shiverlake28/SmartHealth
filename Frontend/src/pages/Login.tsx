@@ -37,7 +37,7 @@ export default function Login() {
               autoComplete='email'
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className='w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
+              className='w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
               required
             />
           </label>
@@ -48,7 +48,7 @@ export default function Login() {
               autoComplete='current-password'
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
-              className='w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
+              className='w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
               required
             />
           </label>

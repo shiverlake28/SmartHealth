@@ -67,7 +67,7 @@ export default function Home() {
           <span className='font-display font-bold grad-cyan'>SMART HEALTH</span>
         </div>
         <div className='flex gap-2 md:gap-3 text-xs md:text-sm font-mono-data'>
-          <button onClick={() => navigate('/login')} className='px-4 py-2 rounded-lg border border-[var(--line)] bg-white/[0.03] hover:border-cyan-400/50 hover:text-cyan-200 transition uppercase tracking-wider'>
+          <button onClick={() => navigate('/login')} className='px-4 py-2 rounded-lg border border-[var(--line)] bg-white/[0.015] hover:border-cyan-400/50 hover:text-cyan-200 transition uppercase tracking-wider'>
             {t('home.login')}
           </button>
           <button onClick={() => navigate('/register')} className='px-4 py-2 rounded-lg border border-cyan-400/40 bg-cyan-400/10 text-cyan-100 hover:bg-cyan-400/20 transition uppercase tracking-wider'>
@@ -86,7 +86,7 @@ export default function Home() {
 
           <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8'>
             {features.map(({ icon: Icon, label, color }) => (
-              <div key={label} className='rounded-xl border border-[var(--line)] bg-white/[0.03] p-4'>
+              <div key={label} className='rounded-xl border border-[var(--line)] bg-white/[0.015] p-4'>
                 <Icon size={20} className={`mx-auto mb-2 ${color}`} />
                 <div className='text-xs text-[#c7d2fe] font-semibold'>{label}</div>
               </div>

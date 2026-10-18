@@ -19,7 +19,7 @@ export default function Register() {
     navigate('/dashboard');
   };
 
-  const input = 'w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-emerald-400/60';
+  const input = 'w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-emerald-400/60';
 
   return (
     <div className='min-h-screen w-full hud-bg text-[#dbe4ff] flex items-center justify-center px-4 relative'>
