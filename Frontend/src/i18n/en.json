@@ -5,7 +5,7 @@
     "attendance": "Attendance",
     "alerts": "Alerts",
     "centers": "Centers",
-    "ai": "AI Engine",
+    "ai": "AI Lab",
     "language": "Language",
     "theme": "Theme",
     "autoRefresh": "Auto Refresh"
@@ -23,13 +23,56 @@
     "hourlyFootfall": "Hourly Footfall Distribution",
     "bedsTitle": "Bed Availability by Centre",
     "attendanceTitle": "Attendance Compliance %",
-    "testsTitle": "Test Lab Uptime",
-    "stockWarnings": "Early Stock-out Warnings",
     "forecastTitle": "AI Demand Forecast",
-    "redistributionTitle": "Resource Redistribution",
+    "stockWarnings": "Early Stock-out Warnings",
     "aiFlags": "Underperforming Centres",
     "alerts": "Live Alert Stream",
+    "redistributionTitle": "Resource Redistribution",
     "centerStatus": "Facility Status Matrix",
     "lastSync": "LAST SYNC"
+  },
+  "inventory": {
+    "title": "Inventory & Stock Monitor",
+    "sub": "Every medicine line across district PHCs/CHCs — days of cover, reorder points, expiry and early stock-out status.",
+    "kpiLines": "Stock Lines",
+    "kpiCritical": "Critical",
+    "kpiLow": "Low Cover",
+    "kpiExpiry": "Near Expiry",
+    "searchPlaceholder": "Search medicine or centre…",
+    "allCentres": "All centres",
+    "tableTitle": "Live Stock Ledger",
+    "empty": "No stock lines match your filters."
+  },
+  "attendance": {
+    "title": "Doctor Attendance",
+    "sub": "Shift-level duty compliance across the district with per-centre coverage and absent tracking.",
+    "kpiPct": "District Attendance",
+    "kpiPresent": "Present Today",
+    "kpiAbsent": "Absent Today",
+    "kpiShifts": "Compliant Shifts",
+    "chartTitle": "Attendance Compliance by Centre",
+    "rosterTitle": "Duty Roster",
+    "empty": "No shifts match this centre."
+  },
+  "alerts": {
+    "title": "Alert Center",
+    "sub": "Live event stream with severity triage — acknowledge alerts as district administrator.",
+    "kpiOpen": "Open",
+    "kpiCritical": "Critical",
+    "kpiAck": "Acknowledged",
+    "kpiTotal": "Total Events",
+    "filters": "FILTERS",
+    "feedTitle": "Alert Feed",
+    "ackBtn": "ACKNOWLEDGE",
+    "empty": "No alerts match your filters."
+  },
+  "ai": {
+    "title": "AI Decision Lab",
+    "sub": "Explainable AI: early stock-out warnings, demand forecasts, smart redistribution and underperformer flags — every output shows how it was computed.",
+    "warningsTitle": "Early Stock-out Warnings",
+    "forecastTitle": "Demand Forecast",
+    "redistributionTitle": "Smart Redistribution",
+    "flagsTitle": "Underperforming Centres",
+    "empty": "Nothing to show for current data."
   }
 }
