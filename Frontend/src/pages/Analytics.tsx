@@ -167,7 +167,7 @@ export default function Analytics() {
             onClick={() => setTab(id)}
             className={cn(
               'panel px-4 py-2.5 flex items-center gap-2 font-mono-data text-xs whitespace-nowrap transition',
-              tab === id ? 'glow-cyan text-cyan-200 border-cyan-400/50' : 'text-dim hover:text-[#dbe4ff]',
+              tab === id ? 'glow-cyan text-cyan-200 border-cyan-400/50' : 'text-dim hover:text-[var(--text)]',
             )}
           >
             <Icon size={14} />
@@ -192,15 +192,15 @@ export default function Analytics() {
           </p>
           <div className='grid gap-3 md:grid-cols-2'>
             {warnings.map((w, i) => (
-              <div key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3.5 hover:border-rose-400/40 transition'>
+              <div key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3.5 hover:border-rose-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-2'>
-                  <span className='font-semibold text-sm text-[#e6ecff]'>{w.medicineName}</span>
+                  <span className='font-semibold text-sm text-[var(--text)]'>{w.medicineName}</span>
                   <span className={cn('chip', sevChip[w.severity])}>{w.severity}</span>
                 </div>
                 <div className='flex flex-wrap gap-2 text-xs font-mono-data mb-2.5'>
                   <span className='px-2 py-0.5 rounded bg-cyan-400/10 text-cyan-300 border border-cyan-400/30'>{w.centerId.toUpperCase()}</span>
                   <span className='px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/30'>{w.daysOfStock}d cover</span>
-                  <span className='px-2 py-0.5 rounded bg-white/[0.02] text-[#9fb0dd] border border-white/[0.05]'>{w.qtyOnHand} on hand</span>
+                  <span className='px-2 py-0.5 rounded bg-[var(--surface)] text-[var(--muted)] border border-[var(--line)]'>{w.qtyOnHand} on hand</span>
                 </div>
                 <div className='meter crit mb-2.5'>
                   <span style={{ width: `${Math.min(100, (w.daysOfStock / 5) * 100)}%` }} />
@@ -245,11 +245,11 @@ export default function Analytics() {
           </p>
 
           <div className='grid gap-3 sm:grid-cols-3 mb-4'>
-            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
+            <div className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3'>
               <div className='label-tech'>confidence</div>
               <div className='font-display text-2xl font-bold grad-cyan'>{confidenceMix.avg}%</div>
             </div>
-            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
+            <div className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3'>
               <div className='label-tech'>high / med / low</div>
               <div className='font-mono-data text-sm mt-1'>
                 <span className='text-emerald-300'>{confidenceMix.high}</span>
@@ -259,7 +259,7 @@ export default function Analytics() {
                 <span className='text-rose-300'>{confidenceMix.low}</span>
               </div>
             </div>
-            <div className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
+            <div className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3'>
               <div className='label-tech'>total demand {horizon}d</div>
               <div className='font-display text-2xl font-bold grad-green'>
                 {forecastTotals.reduce((a, [, v]) => a + v, 0).toLocaleString()}
@@ -273,7 +273,7 @@ export default function Analytics() {
               const max = forecastTotals[0]?.[1] || 1;
               return (
                 <div key={name} className='flex items-center gap-3'>
-                  <span className='text-xs w-28 shrink-0 truncate text-[#dbe4ff]'>{name}</span>
+                  <span className='text-xs w-28 shrink-0 truncate text-[var(--text)]'>{name}</span>
                   <div className='meter flex-1'>
                     <span style={{ width: `${(qty / max) * 100}%` }} />
                   </div>
@@ -287,8 +287,8 @@ export default function Analytics() {
           {/* detail rows */}
           <ul className='space-y-2 max-h-64 overflow-y-auto pr-1'>
             {forecast.map((f, i) => (
-              <li key={`${f.centerId}-${f.medicineId}-${i}`} className='flex flex-wrap items-center gap-2 rounded-lg border border-white/[0.03] bg-white/[0.01] px-3 py-2 text-xs'>
-                <span className='text-[#e6ecff] font-semibold'>{f.medicineName}</span>
+              <li key={`${f.centerId}-${f.medicineId}-${i}`} className='flex flex-wrap items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-3 py-2 text-xs'>
+                <span className='text-[var(--text)] font-semibold'>{f.medicineName}</span>
                 <span className='font-mono-data text-cyan-300'>{f.centerId.toUpperCase()}</span>
                 <span className='font-mono-data text-amber-300 font-bold'>→ {f.qtyForecast}</span>
                 <span className={cn('chip ml-auto', f.confidence === 'high' ? 'chip-ok' : f.confidence === 'med' ? 'chip-med' : 'chip-high')}>
@@ -335,9 +335,9 @@ export default function Analytics() {
                   </span>
                 </div>
                 <p className='text-xs text-dim leading-relaxed'>{r.reason}</p>
-                <div className='mt-3 pt-2.5 border-t border-white/[0.04] flex items-center justify-between'>
+                <div className='mt-3 pt-2.5 border-t border-[var(--line)] flex items-center justify-between'>
                   <span className='label-tech'>district</span>
-                  <span className='font-mono-data text-xs text-[#dbe4ff]'>{r.district}</span>
+                  <span className='font-mono-data text-xs text-[var(--text)]'>{r.district}</span>
                 </div>
               </div>
             ))}
@@ -364,10 +364,10 @@ export default function Analytics() {
           </p>
           <div className='grid gap-3 md:grid-cols-2'>
             {flags.map((f) => (
-              <div key={f.centerId} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-4 hover:border-rose-400/40 transition'>
+              <div key={f.centerId} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-4 hover:border-rose-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-2'>
                   <div>
-                    <div className='font-semibold text-sm text-[#e6ecff]'>{f.centerName}</div>
+                    <div className='font-semibold text-sm text-[var(--text)]'>{f.centerName}</div>
                     <div className='label-tech !text-[0.55rem]'>{f.type} · {f.centerId.toUpperCase()}</div>
                   </div>
                   <span className={cn('chip', sevChip[f.status])}>{f.status}</span>
@@ -392,7 +392,7 @@ export default function Analytics() {
                     ))}
                   </ul>
                 </div>
-                <div className='pt-2.5 border-t border-white/[0.04]'>
+                <div className='pt-2.5 border-t border-[var(--line)]'>
                   <div className='label-tech mb-1'>recommended intervention</div>
                   {f.interventions.map((v, i) => (
                     <div key={i} className='text-xs text-emerald-300 flex gap-1.5'>

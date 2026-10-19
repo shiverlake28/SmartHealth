@@ -78,7 +78,7 @@ export function MetricTile({
           {unit && <span className='font-mono-data text-sm text-dim'>{unit}</span>}
         </div>
         {spark && spark.length > 1 && (
-          <svg viewBox='0 0 100 32' className='h-8 w-24 shrink-0' aria-hidden='true'>
+          <svg viewBox='0 0 100 32' className='h-8 w-24 shrink-0 text-[var(--cyan)]' aria-hidden='true'>
             <defs>
               <linearGradient id={`sp-${label.replace(/\W/g, '')}`} x1='0' y1='0' x2='0' y2='1'>
                 <stop offset='0%' stopColor='rgba(34,211,238,0.55)' />
@@ -87,7 +87,7 @@ export function MetricTile({
             </defs>
             <polyline
               fill='none'
-              stroke='#22d3ee'
+              stroke='currentColor'
               strokeWidth='2'
               strokeLinejoin='round'
               points={spark.map((v, i) => {

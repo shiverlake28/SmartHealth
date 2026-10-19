@@ -31,6 +31,8 @@ import { Panel } from '../components/ui/Panel';
 import { MetricTile } from '../components/ui/MetricTile';
 import { api } from '../lib/api';
 import { useAutoRefresh } from '../hooks/useAutoRefresh';
+import { useTheme } from '../hooks/useTheme';
+import { axisStyle, chartPalette, tooltipStyle } from '../lib/chartTheme';
 import { cn } from '../lib/utils';
 import type { Alert, Center, Beds, Doctors, TestItem } from '../types/domain';
 
@@ -87,16 +89,6 @@ type ForecastRow = {
 
 type FootfallRow = { centerId: string; date: string; hour: number; count: number };
 
-const AXIS = { stroke: '#41507f', fontSize: 11, fontFamily: 'JetBrains Mono, monospace' };
-const tooltipStyle = {
-  background: 'rgba(8,12,26,0.96)',
-  border: '1px solid rgba(120,160,255,0.25)',
-  borderRadius: 10,
-  fontFamily: 'JetBrains Mono, monospace',
-  fontSize: 12,
-  color: '#dbe4ff',
-};
-
 const sevChip: Record<string, string> = {
   critical: 'chip-critical',
   high: 'chip-high',
@@ -107,6 +99,10 @@ const sevChip: Record<string, string> = {
 export default function Dashboard() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const chart = chartPalette(theme);
+  const AXIS = axisStyle(chart);
+  const tooltip = tooltipStyle(chart);
 
   const [kpis, setKpis] = useState<DistrictKpis | null>(null);
   const [centers, setCenters] = useState<Center[]>([]);
@@ -172,8 +168,10 @@ export default function Dashboard() {
 
   const todayStr = useMemo(() => {
     const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  }, []);
+    const sys = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    if (footfall.some((f) => f.date === sys)) return sys;
+    return footfall.reduce((latest, f) => (f.date > latest ? f.date : latest), '');
+  }, [footfall]);
 
   /* ---------- chart 2: hourly footfall ---------- */
   const hourlySeries = useMemo(() => {
@@ -271,7 +269,7 @@ export default function Dashboard() {
             >
               <RefreshCw size={14} className={autoOn ? 'animate-spin-slow' : ''} /> AUTO {autoOn ? 'ON' : 'OFF'}
             </button>
-            <button onClick={refresh} className='panel px-3 py-2 flex items-center gap-2 !rounded-lg font-mono-data text-xs text-[#dbe4ff] hover:glow-violet transition'>
+            <button onClick={refresh} className='panel px-3 py-2 flex items-center gap-2 !rounded-lg font-mono-data text-xs text-[var(--text)] hover:glow-violet transition'>
               <Zap size={14} className='text-amber-300' /> SYNC
             </button>
           </div>
@@ -307,17 +305,17 @@ export default function Dashboard() {
               <AreaChart data={footfallSeries} margin={{ top: 6, right: 10, left: -18, bottom: 0 }}>
                 <defs>
                   <linearGradient id='ffGrad' x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='0%' stopColor='#22d3ee' stopOpacity={0.55} />
-                    <stop offset='100%' stopColor='#22d3ee' stopOpacity={0.02} />
+                    <stop offset='0%' stopColor={chart.cyan} stopOpacity={0.55} />
+                    <stop offset='100%' stopColor={chart.cyan} stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' />
-                <XAxis dataKey='date' tick={AXIS} tickLine={false} axisLine={{ stroke: 'rgba(120,160,255,0.2)' }} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' />
+                <XAxis dataKey='date' tick={AXIS} tickLine={false} axisLine={{ stroke: chart.axisLine }} />
                 <YAxis tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ stroke: '#22d3ee', strokeDasharray: '4 4' }} />
-                <Area type='monotone' dataKey='count' name='visits' stroke='#22d3ee' strokeWidth={2.5} fill='url(#ffGrad)'
-                  dot={{ r: 3, fill: '#04060d', stroke: '#22d3ee', strokeWidth: 2 }}
-                  activeDot={{ r: 5, stroke: '#a78bfa', strokeWidth: 2 }} />
+                <Tooltip contentStyle={tooltip} cursor={{ stroke: chart.cyan, strokeDasharray: '4 4' }} />
+                <Area type='monotone' dataKey='count' name='visits' stroke={chart.cyan} strokeWidth={2.5} fill='url(#ffGrad)'
+                  dot={{ r: 3, fill: chart.dotFill, stroke: chart.cyan, strokeWidth: 2 }}
+                  activeDot={{ r: 5, stroke: chart.violet, strokeWidth: 2 }} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -327,7 +325,7 @@ export default function Dashboard() {
               { l: 'YESTERDAY', v: footfallSeries.at(-2)?.count ?? 0, c: 'text-blue-300' },
               { l: 'PEAK 7D', v: Math.max(...footfallSeries.map((x) => x.count), 0), c: 'text-violet-300' },
             ].map((x) => (
-              <div key={x.l} className='rounded-lg border border-white/[0.04] bg-white/[0.015] px-3 py-2'>
+              <div key={x.l} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] px-3 py-2'>
                 <div className='label-tech'>{x.l}</div>
                 <div className={cn('font-mono-data text-lg font-bold', x.c)}>{x.v}</div>
               </div>
@@ -339,13 +337,13 @@ export default function Dashboard() {
           <div className='h-56 md:h-64'>
             <ResponsiveContainer width='100%' height='100%'>
               <BarChart data={hourlySeries} margin={{ top: 6, right: 8, left: -22, bottom: 0 }}>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' vertical={false} />
-                <XAxis dataKey='hour' tick={AXIS} tickLine={false} axisLine={{ stroke: 'rgba(120,165,250,0.25)' }} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' vertical={false} />
+                <XAxis dataKey='hour' tick={AXIS} tickLine={false} axisLine={{ stroke: chart.axisLine }} />
                 <YAxis tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(167,139,250,0.08)' }} />
+                <Tooltip contentStyle={tooltip} cursor={{ fill: chart.cursorViolet }} />
                 <Bar dataKey='count' name='visits' radius={[5, 5, 0, 0]}>
                   {hourlySeries.map((_, i) => (
-                    <Cell key={i} fill={i === hourlySeries.length - 1 ? '#a78bfa' : 'rgba(96,165,250,0.55)'} />
+                    <Cell key={i} fill={i === hourlySeries.length - 1 ? chart.violet : chart.blueSoft} />
                   ))}
                 </Bar>
               </BarChart>
@@ -363,13 +361,13 @@ export default function Dashboard() {
           <div className='h-52'>
             <ResponsiveContainer width='100%' height='100%'>
               <BarChart data={bedByCenter} layout='vertical' margin={{ top: 4, right: 12, left: 8, bottom: 0 }}>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' horizontal={false} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' horizontal={false} />
                 <XAxis type='number' tick={AXIS} tickLine={false} axisLine={false} />
                 <YAxis type='category' dataKey='name' width={84} tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(251,191,36,0.07)' }} />
-                <Legend wrapperStyle={{ fontSize: 11, fontFamily: 'JetBrains Mono, monospace' }} />
-                <Bar dataKey='occupied' name='occupied' stackId='a' fill='#fbbf24' />
-                <Bar dataKey='available' name='free' stackId='a' fill='rgba(52,211,153,0.85)' radius={[0, 5, 5, 0]} />
+                <Tooltip contentStyle={tooltip} cursor={{ fill: chart.cursorAmber }} />
+                <Legend wrapperStyle={{ fontSize: 11, fontFamily: 'JetBrains Mono, monospace', color: chart.tooltipText }} />
+                <Bar dataKey='occupied' name='occupied' stackId='a' fill={chart.amber} />
+                <Bar dataKey='available' name='free' stackId='a' fill={chart.greenSoft} radius={[0, 5, 5, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -379,13 +377,13 @@ export default function Dashboard() {
           <div className='h-52'>
             <ResponsiveContainer width='100%' height='100%'>
               <BarChart data={attendanceByCenter} margin={{ top: 4, right: 8, left: -24, bottom: 0 }}>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' vertical={false} />
-                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: 'rgba(120,165,250,0.25)' }} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' vertical={false} />
+                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: chart.axisLine }} />
                 <YAxis domain={[0, 100]} unit='%' tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(34,211,238,0.07)' }} />
+                <Tooltip contentStyle={tooltip} cursor={{ fill: chart.cursorCyan }} />
                 <Bar dataKey='pct' name='attendance %' radius={[5, 5, 0, 0]} maxBarSize={34}>
                   {attendanceByCenter.map((r, i) => (
-                    <Cell key={i} fill={r.pct >= 80 ? '#34d399' : r.pct >= 60 ? '#fbbf24' : '#fb7185'} />
+                    <Cell key={i} fill={r.pct >= 80 ? chart.green : r.pct >= 60 ? chart.amber : chart.rose} />
                   ))}
                 </Bar>
               </BarChart>
@@ -398,12 +396,12 @@ export default function Dashboard() {
           <div className='h-52'>
             <ResponsiveContainer width='100%' height='100%'>
               <LineChart data={forecastSeries} margin={{ top: 6, right: 10, left: -18, bottom: 0 }}>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' />
-                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: 'rgba(120,165,250,0.25)' }} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' />
+                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: chart.axisLine }} />
                 <YAxis tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} />
-                <Line type='monotone' dataKey='qty' name='7-day demand' stroke='#22d3ee' strokeWidth={2.5}
-                  dot={{ r: 3, fill: '#04060d', stroke: '#22d3ee', strokeWidth: 2 }} />
+                <Tooltip contentStyle={tooltip} />
+                <Line type='monotone' dataKey='qty' name='7-day demand' stroke={chart.cyan} strokeWidth={2.5}
+                  dot={{ r: 3, fill: chart.dotFill, stroke: chart.cyan, strokeWidth: 2 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -421,9 +419,9 @@ export default function Dashboard() {
           <ul className='space-y-2.5 max-h-80 overflow-y-auto pr-1'>
             {warnings.length === 0 && <li className='text-dim text-sm py-6 text-center'>All clear.</li>}
             {warnings.slice(0, 8).map((w, i) => (
-              <li key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
+              <li key={`${w.centerId}-${w.medicineId}-${i}`} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3'>
                 <div className='flex items-center justify-between gap-2 mb-1.5'>
-                  <span className='font-semibold text-sm text-[#e6ecff] truncate'>{w.medicineName}</span>
+                  <span className='font-semibold text-sm text-[var(--text)] truncate'>{w.medicineName}</span>
                   <span className={cn('chip', sevChip[w.severity])}>{w.severity}</span>
                 </div>
                 <div className='flex items-center gap-2 text-xs font-mono-data mb-2'>
@@ -452,7 +450,7 @@ export default function Dashboard() {
                   : a.severity === 'high' ? 'border-l-orange-400 border-orange-400/25 bg-orange-400/[0.05]'
                     : 'border-l-amber-300 border-amber-300/25 bg-amber-300/[0.05]')}>
                 <div className='flex items-center justify-between gap-2'>
-                  <span className='text-sm font-semibold text-[#e6ecff]'>{a.message}</span>
+                  <span className='text-sm font-semibold text-[var(--text)]'>{a.message}</span>
                   <span className={cn('chip', sevChip[a.severity])}>{a.severity}</span>
                 </div>
                 <div className='flex items-center gap-2 mt-1.5 text-xs font-mono-data text-dim'>
@@ -473,9 +471,9 @@ export default function Dashboard() {
           <ul className='space-y-3 max-h-80 overflow-y-auto pr-1'>
             {flags.length === 0 && <li className='text-dim text-sm py-6 text-center'>No underperforming centres.</li>}
             {flags.map((f) => (
-              <li key={f.centerId} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3'>
+              <li key={f.centerId} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3'>
                 <div className='flex items-center justify-between gap-2 mb-1'>
-                  <span className='font-semibold text-sm truncate text-[#e6ecff]'>{f.centerName}</span>
+                  <span className='font-semibold text-sm truncate text-[var(--text)]'>{f.centerName}</span>
                   <span className={cn('chip', sevChip[f.status])}>{f.status}</span>
                 </div>
                 <div className='flex items-center gap-2 mb-2'>
@@ -521,10 +519,10 @@ export default function Dashboard() {
                   <tr
                     key={r.c.id}
                     onClick={() => navigate(`/centers/${r.c.id}`)}
-                    className='border-t border-white/[0.03] hover:bg-white/[0.02] transition cursor-pointer'
+                    className='border-t border-[var(--line)] hover:bg-[var(--surface)] transition cursor-pointer'
                   >
                     <td className='py-2.5 pr-2'>
-                      <div className='text-[#e6ecff] font-semibold truncate max-w-[140px]'>{r.c.name}</div>
+                      <div className='text-[var(--text)] font-semibold truncate max-w-[140px]'>{r.c.name}</div>
                       <div className='label-tech !text-[0.5rem]'>{r.c.type}</div>
                     </td>
                     <td className='py-2.5 pr-2'>

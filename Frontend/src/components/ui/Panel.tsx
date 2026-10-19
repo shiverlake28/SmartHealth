@@ -35,7 +35,7 @@ export function Panel({
           <div className='min-w-0'>
             {kicker && <div className='label-tech mb-1'>{kicker}</div>}
             {title && (
-              <h2 className='font-display text-sm md:text-base font-semibold text-[#e6ecff] truncate'>
+              <h2 className='font-display text-sm md:text-base font-semibold text-[var(--text)] truncate'>
                 {title}
               </h2>
             )}

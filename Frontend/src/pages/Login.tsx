@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Heart, LogIn } from 'lucide-react';
@@ -20,7 +20,7 @@ export default function Login() {
   };
 
   return (
-    <div className='min-h-screen w-full hud-bg text-[#dbe4ff] flex items-center justify-center px-4 relative'>
+    <div className='min-h-screen w-full hud-bg text-[var(--text)] flex items-center justify-center px-4 relative'>
       <div className='scanline' />
       <div className='w-full max-w-md panel p-8 rise relative'>
         <div className='flex flex-col items-center mb-6'>
@@ -37,7 +37,7 @@ export default function Login() {
               autoComplete='email'
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className='w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
+              className='w-full px-4 py-3 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-sm font-mono-data text-[var(--text)] focus:outline-none focus:border-cyan-400/60'
               required
             />
           </label>
@@ -48,7 +48,7 @@ export default function Login() {
               autoComplete='current-password'
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
-              className='w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60'
+              className='w-full px-4 py-3 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-sm font-mono-data text-[var(--text)] focus:outline-none focus:border-cyan-400/60'
               required
             />
           </label>

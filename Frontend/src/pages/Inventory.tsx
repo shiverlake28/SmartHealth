@@ -110,7 +110,7 @@ export default function Inventory() {
             >
               AUTO {autoOn ? 'ON' : 'OFF'}
             </button>
-            <button onClick={refresh} className='panel px-3 py-1.5 !rounded-lg font-mono-data text-xs text-[#dbe4ff] hover:glow-violet transition'>
+            <button onClick={refresh} className='panel px-3 py-1.5 !rounded-lg font-mono-data text-xs text-[var(--text)] hover:glow-violet transition'>
               SYNC
             </button>
           </div>
@@ -127,18 +127,18 @@ export default function Inventory() {
       {/* filters */}
       <div className='panel p-3 flex flex-col sm:flex-row gap-2.5 sm:items-center rise'>
         <div className='relative flex-1 min-w-0'>
-          <Search size={14} className='absolute left-3 top-1/2 -translate-y-1/2 text-[#6f83b8]' />
+          <Search size={14} className='absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]' />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t('inventory.searchPlaceholder')}
-            className='w-full pl-8 pr-3 py-2 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm text-[#dbe4ff] placeholder:text-[#6f83b8] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+            className='w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:outline-none focus:border-cyan-400/60 font-mono-data'
           />
         </div>
         <select
           value={centerFilter}
           onChange={(e) => setCenterFilter(e.target.value)}
-          className='px-3 py-2 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+          className='px-3 py-2 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-sm text-[var(--text)] focus:outline-none focus:border-cyan-400/60 font-mono-data'
         >
           <option value='all'>{t('inventory.allCentres')}</option>
           {centers.map((c) => (
@@ -179,17 +179,17 @@ export default function Inventory() {
             </thead>
             <tbody className='font-mono-data'>
               {filtered.map((r, i) => (
-                <tr key={`${r.centerId}-${r.medicineId}-${i}`} className='border-t border-white/[0.03] hover:bg-white/[0.02] transition'>
+                <tr key={`${r.centerId}-${r.medicineId}-${i}`} className='border-t border-[var(--line)] hover:bg-[var(--surface)] transition'>
                   <td className='py-2.5 pr-3'>
-                    <div className='text-[#e6ecff] font-semibold truncate max-w-[130px]'>{r.centerName}</div>
+                    <div className='text-[var(--text)] font-semibold truncate max-w-[130px]'>{r.centerName}</div>
                     <div className='label-tech !text-[0.55rem]'>{r.centerType} · {r.centerId.toUpperCase()}</div>
                   </td>
                   <td className='py-2.5 pr-3'>
-                    <div className='text-[#dbe4ff]'>{r.medicineName}</div>
+                    <div className='text-[var(--text)]'>{r.medicineName}</div>
                     <div className='text-dim !text-[0.6rem]'>{r.leadTimeDays}d lead time</div>
                   </td>
                   <td className='py-2.5 pr-3 text-right'>
-                    <span className={cn('font-bold', r.qtyOnHand <= r.criticalMin ? 'text-rose-300' : 'text-[#dbe4ff]')}>
+                    <span className={cn('font-bold', r.qtyOnHand <= r.criticalMin ? 'text-rose-300' : 'text-[var(--text)]')}>
                       {r.qtyOnHand}
                     </span>
                     <span className='text-dim'> {r.unit}</span>
@@ -205,7 +205,7 @@ export default function Inventory() {
                       </div>
                     </div>
                   </td>
-                  <td className='py-2.5 pr-3 text-right text-[#9fb0dd]'>{r.reorderPoint}</td>
+                  <td className='py-2.5 pr-3 text-right text-[var(--muted)]'>{r.reorderPoint}</td>
                   <td className='py-2.5 pr-3'>
                     {r.expiryDates[0] ? (
                       <span className={cn(r.nearExpiry ? 'text-amber-300' : 'text-dim')}>

@@ -6,6 +6,8 @@ import { Panel } from '../components/ui/Panel';
 import { MetricTile } from '../components/ui/MetricTile';
 import { api } from '../lib/api';
 import { useAutoRefresh } from '../hooks/useAutoRefresh';
+import { useTheme } from '../hooks/useTheme';
+import { axisStyle, chartPalette, tooltipStyle } from '../lib/chartTheme';
 import { cn } from '../lib/utils';
 
 type AttRow = {
@@ -35,20 +37,14 @@ type Summary = {
 
 type Center = { id: string; name: string };
 
-const AXIS = { stroke: '#41507f', fontSize: 11, fontFamily: 'JetBrains Mono, monospace' };
-const tooltipStyle = {
-  background: 'rgba(8,12,26,0.96)',
-  border: '1px solid rgba(120,160,255,0.25)',
-  borderRadius: 10,
-  fontFamily: 'JetBrains Mono, monospace',
-  fontSize: 12,
-  color: '#dbe4ff',
-};
-
 const chipCls: Record<AttRow['status'], string> = { ok: 'chip-ok', med: 'chip-med', critical: 'chip-critical' };
 
 export default function Attendance() {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const chart = chartPalette(theme);
+  const AXIS = axisStyle(chart);
+  const tooltip = tooltipStyle(chart);
   const [rows, setRows] = useState<AttRow[]>([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [centers, setCenters] = useState<Center[]>([]);
@@ -113,7 +109,7 @@ export default function Attendance() {
             <select
               value={centerFilter}
               onChange={(e) => setCenterFilter(e.target.value)}
-              className='px-3 py-1.5 rounded-lg bg-white/[0.02] border border-[var(--line)] text-xs text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data'
+              className='px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-xs text-[var(--text)] focus:outline-none focus:border-cyan-400/60 font-mono-data'
             >
               <option value='all'>{t('inventory.allCentres')}</option>
               {centers.map((c) => (
@@ -171,13 +167,13 @@ export default function Attendance() {
           <div className='h-64 md:h-72'>
             <ResponsiveContainer width='100%' height='100%'>
               <BarChart data={chartData} margin={{ top: 6, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid stroke='rgba(120,160,255,0.09)' strokeDasharray='3 4' vertical={false} />
-                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: 'rgba(120,165,250,0.25)' }} />
+                <CartesianGrid stroke={chart.grid} strokeDasharray='3 4' vertical={false} />
+                <XAxis dataKey='name' tick={AXIS} tickLine={false} axisLine={{ stroke: chart.axisLine }} />
                 <YAxis domain={[0, 100]} unit='%' tick={AXIS} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(34,211,238,0.07)' }} />
+                <Tooltip contentStyle={tooltip} cursor={{ fill: chart.cursorCyan }} />
                 <Bar dataKey='pct' name='attendance %' radius={[6, 6, 0, 0]} maxBarSize={44}>
                   {chartData.map((r, i) => (
-                    <Cell key={i} fill={r.pct >= 80 ? '#34d399' : r.pct >= 60 ? '#fbbf24' : '#fb7185'} />
+                    <Cell key={i} fill={r.pct >= 80 ? chart.green : r.pct >= 60 ? chart.amber : chart.rose} />
                   ))}
                 </Bar>
               </BarChart>
@@ -199,10 +195,10 @@ export default function Attendance() {
         >
           <ul className='space-y-2.5 max-h-[340px] overflow-y-auto pr-1'>
             {filtered.map((r, i) => (
-              <li key={`${r.centerId}-${r.shift}-${i}`} className='rounded-lg border border-white/[0.04] bg-white/[0.015] p-3 hover:border-violet-400/40 transition'>
+              <li key={`${r.centerId}-${r.shift}-${i}`} className='rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3 hover:border-violet-400/40 transition'>
                 <div className='flex items-center justify-between gap-2 mb-1.5'>
                   <div className='min-w-0'>
-                    <div className='text-sm font-semibold text-[#e6ecff] truncate'>{r.centerName}</div>
+                    <div className='text-sm font-semibold text-[var(--text)] truncate'>{r.centerName}</div>
                     <div className='label-tech !text-[0.55rem]'>{r.shift} · {r.date}</div>
                   </div>
                   <span className={cn('chip', chipCls[r.status])}>{r.attendancePct}%</span>

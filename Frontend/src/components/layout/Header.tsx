@@ -1,4 +1,4 @@
-﻿import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Globe, Moon, RefreshCw, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ export function Header() {
 
         <button
           onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'hi' : 'en')}
-          className='px-2.5 py-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface)] flex items-center gap-1.5 font-mono-data text-[0.68rem] text-[#dbe4ff] hover:border-cyan-400/50 hover:text-cyan-200 transition'
+          className='px-2.5 py-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface)] flex items-center gap-1.5 font-mono-data text-[0.68rem] text-[var(--text)] hover:border-cyan-400/50 hover:text-cyan-200 transition'
           aria-label={t('common.language')}
         >
           <Globe size={13} />
@@ -43,7 +43,7 @@ export function Header() {
 
         <button
           onClick={() => setDark((d) => !d)}
-          className='px-2.5 py-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface)] flex items-center gap-1.5 font-mono-data text-[0.68rem] text-[#dbe4ff] hover:border-violet-400/50 hover:text-violet-200 transition'
+          className='px-2.5 py-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface)] flex items-center gap-1.5 font-mono-data text-[0.68rem] text-[var(--text)] hover:border-violet-400/50 hover:text-violet-200 transition'
           aria-label={t('common.theme')}
           aria-pressed={!dark}
         >

@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Activity, BarChart3, Heart, Share2, Stethoscope } from 'lucide-react';
@@ -35,7 +35,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className='h-screen w-full hud-bg flex items-center justify-center text-white relative'>
+      <div className='h-screen w-full hud-bg flex items-center justify-center text-[var(--text)] relative'>
         <div className='scanline' />
         <div className='flex flex-col items-center gap-5 relative'>
           <div className='relative'>
@@ -57,7 +57,7 @@ export default function Home() {
   ];
 
   return (
-    <div className='min-h-screen w-full hud-bg text-[#dbe4ff] overflow-hidden relative'>
+    <div className='min-h-screen w-full hud-bg text-[var(--text)] overflow-hidden relative'>
       <div className='scanline' />
       <Particles />
 
@@ -67,7 +67,7 @@ export default function Home() {
           <span className='font-display font-bold grad-cyan'>SMART HEALTH</span>
         </div>
         <div className='flex gap-2 md:gap-3 text-xs md:text-sm font-mono-data'>
-          <button onClick={() => navigate('/login')} className='px-4 py-2 rounded-lg border border-[var(--line)] bg-white/[0.015] hover:border-cyan-400/50 hover:text-cyan-200 transition uppercase tracking-wider'>
+          <button onClick={() => navigate('/login')} className='px-4 py-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] hover:border-cyan-400/50 hover:text-cyan-200 transition uppercase tracking-wider'>
             {t('home.login')}
           </button>
           <button onClick={() => navigate('/register')} className='px-4 py-2 rounded-lg border border-cyan-400/40 bg-cyan-400/10 text-cyan-100 hover:bg-cyan-400/20 transition uppercase tracking-wider'>
@@ -82,13 +82,13 @@ export default function Home() {
           <h1 className='font-display text-3xl sm:text-4xl md:text-6xl font-bold grad-cyan mb-4'>
             {t('home.tagline')}
           </h1>
-          <p className='text-base sm:text-lg text-[#9fb0dd] max-w-2xl mb-8 mx-auto'>{t('home.subtitle')}</p>
+          <p className='text-base sm:text-lg text-[var(--muted)] max-w-2xl mb-8 mx-auto'>{t('home.subtitle')}</p>
 
           <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8'>
             {features.map(({ icon: Icon, label, color }) => (
-              <div key={label} className='rounded-xl border border-[var(--line)] bg-white/[0.015] p-4'>
+              <div key={label} className='rounded-xl border border-[var(--line)] bg-[var(--surface)] p-4'>
                 <Icon size={20} className={`mx-auto mb-2 ${color}`} />
-                <div className='text-xs text-[#c7d2fe] font-semibold'>{label}</div>
+                <div className='text-xs text-[var(--text)] font-semibold'>{label}</div>
               </div>
             ))}
           </div>

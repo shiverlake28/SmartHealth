@@ -117,7 +117,7 @@ export default function Alerts() {
             >
               AUTO {autoOn ? 'ON' : 'OFF'}
             </button>
-            <button onClick={refresh} className='panel px-3 py-1.5 !rounded-lg font-mono-data text-xs text-[#dbe4ff] hover:glow-violet transition'>
+            <button onClick={refresh} className='panel px-3 py-1.5 !rounded-lg font-mono-data text-xs text-[var(--text)] hover:glow-violet transition'>
               SYNC
             </button>
           </div>
@@ -161,7 +161,7 @@ export default function Alerts() {
         <select
           value={centerFilter}
           onChange={(e) => setCenterFilter(e.target.value)}
-          className='px-3 py-1.5 rounded-lg bg-white/[0.02] border border-[var(--line)] text-xs text-[#dbe4ff] focus:outline-none focus:border-cyan-400/60 font-mono-data md:ml-auto'
+          className='px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-xs text-[var(--text)] focus:outline-none focus:border-cyan-400/60 font-mono-data md:ml-auto'
         >
           <option value='all'>{t('inventory.allCentres')}</option>
           {centers.map((c) => (
@@ -182,12 +182,12 @@ export default function Alerts() {
               >
                 <div className='flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between'>
                   <div className='min-w-0 flex items-start gap-3'>
-                    <span className='mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.025]'>
+                    <span className='mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--line)] bg-[var(--surface)]'>
                       <Icon size={15} className={a.severity === 'critical' ? 'text-rose-300' : a.severity === 'high' ? 'text-orange-300' : 'text-amber-200'} />
                     </span>
                     <div className='min-w-0'>
                       <div className='flex flex-wrap items-center gap-2 mb-1'>
-                        <span className='text-sm font-semibold text-[#e6ecff]'>{a.message}</span>
+                        <span className='text-sm font-semibold text-[var(--text)]'>{a.message}</span>
                         <span className={cn('chip', severityChip[a.severity])}>{a.severity}</span>
                         {a.status === 'ack' && <span className='chip chip-ok'>acknowledged</span>}
                       </div>

@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -42,7 +42,7 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
                 'group relative flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-semibold tracking-wide transition',
                 isActive
                   ? 'bg-gradient-to-r from-cyan-400/15 to-transparent text-cyan-200 border border-cyan-400/35 shadow-[0_0_18px_rgba(34,211,238,0.15)]'
-                  : 'text-[var(--muted)] border border-transparent hover:bg-[var(--surface)] hover:text-[#dbe4ff]',
+                  : 'text-[var(--muted)] border border-transparent hover:bg-[var(--surface)] hover:text-[var(--text)]',
               )
             }
           >
@@ -116,7 +116,7 @@ export function Sidebar() {
 
       <button
         onClick={() => setOpen(true)}
-        className='md:hidden fixed bottom-4 right-4 z-40 h-12 w-12 rounded-full border border-cyan-400/40 bg-[#0a0f20] flex items-center justify-center text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.35)]'
+        className='md:hidden fixed bottom-4 right-4 z-40 h-12 w-12 rounded-full border border-cyan-400/40 bg-[var(--bg-2)] flex items-center justify-center text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.35)]'
         aria-label='Open menu'
       >
         <Menu size={20} />
@@ -125,7 +125,7 @@ export function Sidebar() {
       {open && (
         <div className='md:hidden fixed inset-0 z-50 flex'>
           <div className='absolute inset-0 bg-black/70 backdrop-blur-sm' onClick={() => setOpen(false)} />
-          <aside className='relative w-64 h-full bg-[#070b17] border-r border-[var(--line)] flex flex-col animate-rise'>
+          <aside className='relative w-64 h-full bg-[var(--sidebar-bg)] border-r border-[var(--line)] flex flex-col animate-rise'>
             <div className='h-14 flex items-center justify-between px-4 border-b border-[var(--line)]'>
               <span className='font-display text-xs font-bold grad-cyan'>MISSION CONTROL</span>
               <button onClick={() => setOpen(false)} aria-label='Close menu' className='text-[var(--muted)]'>

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Heart, UserPlus } from 'lucide-react';
@@ -19,10 +19,10 @@ export default function Register() {
     navigate('/dashboard');
   };
 
-  const input = 'w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-[var(--line)] text-sm font-mono-data text-[#dbe4ff] focus:outline-none focus:border-emerald-400/60';
+  const input = 'w-full px-4 py-3 rounded-lg bg-[var(--surface)] border border-[var(--line)] text-sm font-mono-data text-[var(--text)] focus:outline-none focus:border-emerald-400/60';
 
   return (
-    <div className='min-h-screen w-full hud-bg text-[#dbe4ff] flex items-center justify-center px-4 relative'>
+    <div className='min-h-screen w-full hud-bg text-[var(--text)] flex items-center justify-center px-4 relative'>
       <div className='scanline' />
       <div className='w-full max-w-md panel p-8 rise relative'>
         <div className='flex flex-col items-center mb-6'>
